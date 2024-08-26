@@ -37,14 +37,10 @@ bool checkChargeRate(float chargeRate)
 
 bool batteryIsOk(float temperature, float soc, float chargeRate) 
 {
-  if(checkTemperature(temperature) && checkSoc(soc) && checkChargeRate(chargeRate))
-    return true;
-  else
-    return false;
+  return checkTemperature(temperature) && checkSoc(soc) && checkChargeRate(chargeRate);
 }
 
-// Function to run test cases
-void runTestCases()
+int main() 
 {
   // Temperature < 0, rest optimal
   assert(batteryIsOk(-0.1, 70, 0.1) == false);
@@ -58,9 +54,4 @@ void runTestCases()
   assert(batteryIsOk(30, 60, 0.81) == false);
   // All optimal values
   assert(batteryIsOk(30, 60, 0.7) == true);
-}
-
-int main() 
-{
-  runTestCases();
 }
